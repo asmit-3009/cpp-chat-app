@@ -1,2 +1,4 @@
 client
 server
+//g++ -std=c++17 -pthread src/server.cpp -o server
+//g++ -std=c++17 -pthread src/client.cpp -o client
