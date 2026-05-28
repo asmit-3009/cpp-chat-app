@@ -1,6 +1,7 @@
 # 💬 C++ Multi-Client TCP Chat Application
 
-A real-time terminal-based chat application built in C++ using **TCP sockets** and **multithreading**. Multiple clients can connect to a server and exchange messages simultaneously.
+A real-time chat application built in C++ with a modern React web interface. 
+Multiple clients can connect and exchange messages simultaneously through a browser.
 
 ---
 
@@ -8,19 +9,22 @@ A real-time terminal-based chat application built in C++ using **TCP sockets** a
 
 - Multi-client support (up to 10 simultaneous users)
 - Real-time message broadcasting
-- Unique username per client
+- Modern React web interface with beautiful UI
+- Node.js WebSocket bridge connecting browser to C++ backend
 - Join/leave notifications
-- Colored terminal output
-- Graceful disconnect with `/quit`
+- Colored message bubbles (sent vs received)
+- Graceful disconnect handling
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Language:** C++ (C++17)
-- **Concepts:** TCP Sockets, Multithreading, Mutex, POSIX API
-- **Platform:** macOS / Linux
-- **Tools:** GCC, Git, VS Code
+| Layer | Technology |
+|---|---|
+| Backend | C++17, POSIX TCP Sockets, Multithreading, Mutex |
+| Bridge | Node.js, Express, Socket.io |
+| Frontend | React.js, CSS3 |
+| Tools | GCC, Git, VS Code |
 
 ---
 
@@ -28,31 +32,35 @@ A real-time terminal-based chat application built in C++ using **TCP sockets** a
 
 cpp-chat-app/
 ├── src/
-│   ├── server.cpp       
-│   └── client.cpp       
+│   ├── server.cpp       # C++ TCP Server
+│   └── client.cpp       # C++ Terminal Client
 ├── include/
-│   └── common.h         
+│   └── common.h         # Shared constants
+├── backend/
+│   └── server.js        # Node.js WebSocket bridge
+├── frontend/
+│   └── src/
+│       ├── App.js        # React chat UI
+│       └── App.css       # Styling
 └── README.md
 
 ---
 
-## ⚙️ How to Compile
+## ⚙️ How to Run
 
+### Step 1 — Compile C++ Server
 g++ -std=c++17 -pthread src/server.cpp -o server
-g++ -std=c++17 -pthread src/client.cpp -o client
 
----
-
-## ▶️ How to Run
-
-Step 1 — Start the server:
+### Step 2 — Start C++ Server
 ./server
 
-Step 2 — Connect clients (open new terminal for each):
-./client
+### Step 3 — Start Node.js Bridge
+cd backend && node server.js
 
-Step 3 — Enter your username and start chatting!
-Type /quit to disconnect.
+### Step 4 — Start React Frontend
+cd frontend && npm start
+
+### Step 5 — Open browser at http://localhost:3000
 
 ---
 
@@ -62,9 +70,10 @@ Type /quit to disconnect.
 |---|---|
 | TCP Socket Programming | server.cpp, client.cpp |
 | Multithreading | One thread per client |
-| Mutex and Thread Safety | Shared client list |
-| POSIX API | socket, bind, listen, accept |
-| Modular Design | Separate server/client/header |
+| Mutex & Thread Safety | Shared client list |
+| WebSocket Communication | Node.js bridge |
+| React Hooks | useState, useEffect, useRef |
+| Client-Server Architecture | Full 3-tier design |
 
 ---
 
